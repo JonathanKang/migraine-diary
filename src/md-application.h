@@ -16,18 +16,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef MD_APPLICATION_H_
+#define MD_APPLICATION_H_
+
 #include <gtk/gtk.h>
 
-#include "md-application.h"
+G_BEGIN_DECLS
 
-int
-main (int argc, char **argv)
-{
-    GtkApplication *application;
-    int status;
+#define MD_TYPE_APPLICATION md_application_get_type ()
+G_DECLARE_FINAL_TYPE (MdApplication, md_application, MD, APPLICATION, GtkApplication)
 
-    application = md_application_new ();
-    status = g_application_run (G_APPLICATION (application), argc, argv);
+GtkApplication *md_application_new (void);
 
-    return status;
-}
+G_END_DECLS
+
+#endif /* MD_APPLICATION_H_ */
