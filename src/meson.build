@@ -1,6 +1,7 @@
 sources = [
     'md-application.c',
-    'md-main.c'
+    'md-main.c',
+    'md-window.c'
 ]
 
 executable(

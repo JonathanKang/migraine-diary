@@ -16,44 +16,30 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "md-application.h"
 #include "md-window.h"
 
-struct _MdApplication
+struct _MdWindow
 {
     /*< private >*/
-    GtkApplication parent_instance;
+    GtkApplicationWindow parent_instance;
 };
 
-G_DEFINE_TYPE (MdApplication, md_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE (MdWindow, md_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
-md_application_activate (GApplication *application)
-{
-    GtkWidget *window;
-
-    window = md_window_new (GTK_APPLICATION (application));
-    gtk_widget_show (window);
-}
-
-static void
-md_application_init (MdApplication *application)
+md_window_init (MdWindow *window)
 {
 }
 
 static void
-md_application_class_init (MdApplicationClass *klass)
+md_window_class_init (MdWindowClass *klass)
 {
-    GApplicationClass *app_class;
-
-    app_class = G_APPLICATION_CLASS (klass);
-    app_class->activate = md_application_activate;
 }
 
-GtkApplication *
-md_application_new ()
+GtkWidget *
+md_window_new (GtkApplication *application)
 {
-    return g_object_new (MD_TYPE_APPLICATION,
-                         "application-id", "com.jonathankang.MigraineDiary",
+    return g_object_new (MD_TYPE_WINDOW,
+                         "application", application,
                          NULL);
 }
