@@ -4,6 +4,8 @@ sources = [
     'md-window.c'
 ]
 
+sources += md_resources
+
 executable(
     'migraine-diary',
     sources,

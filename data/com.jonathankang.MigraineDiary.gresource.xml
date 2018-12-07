@@ -1,0 +1,5 @@
+<gresources>
+    <gresource prefix="/com/jonathankang/MigraineDiary">
+        <file preprocess="xml-stripblanks">md-window.ui</file>
+    </gresource>
+</gresources>

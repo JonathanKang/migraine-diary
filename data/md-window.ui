@@ -1,0 +1,15 @@
+<interface domain="/com/jonathankang/MigraineDiary">
+    <template class="MdWindow" parent="GtkApplicationWindow">
+        <property name="height-request">800</property>
+        <property name="width-request">640</property>
+        <child>
+            <object class="GtkHeaderBar">
+                <property name="visible">True</property>
+                <style>
+                    <class name="titlebar"/>
+                    <class name="event_toolbar"/>
+                </style>
+            </object>
+        </child>
+    </template>
+</interface>
