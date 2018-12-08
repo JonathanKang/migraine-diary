@@ -2,8 +2,10 @@
     <template class="MdWindow" parent="GtkApplicationWindow">
         <property name="height-request">800</property>
         <property name="width-request">640</property>
-        <child>
+        <child type="titlebar">
             <object class="GtkHeaderBar">
+                <property name="show-close-button">True</property>
+                <property name="title">Migraine Diary</property>
                 <property name="visible">True</property>
                 <style>
                     <class name="titlebar"/>
