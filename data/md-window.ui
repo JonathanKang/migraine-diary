@@ -1,4 +1,4 @@
-<interface domain="/com/jonathankang/MigraineDiary">
+<interface domain="migraine-diary">
     <template class="MdWindow" parent="GtkApplicationWindow">
         <property name="height-request">800</property>
         <property name="width-request">640</property>
@@ -11,6 +11,17 @@
                     <class name="titlebar"/>
                     <class name="event_toolbar"/>
                 </style>
+            </object>
+        </child>
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="visible">True</property>
+                <child>
+                    <object class="MdDiaryList" id="diary_list">
+                        <property name="visible">True</property>
+                    </object>
+                </child>
             </object>
         </child>
     </template>

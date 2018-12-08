@@ -16,42 +16,30 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "md-diary-list.h"
-#include "md-window.h"
+#include <gtk/gtk.h>
 
-struct _MdWindow
+#include "md-diary-list.h"
+
+struct _MdDiaryList
 {
     /*< private >*/
-    GtkApplicationWindow parent_instance;
+    GtkListBox parent_instance;
 };
 
-G_DEFINE_TYPE (MdWindow, md_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (MdDiaryList, md_diary_list, GTK_TYPE_LIST_BOX)
 
 static void
-md_window_init (MdWindow *window)
+md_diary_list_init (MdDiaryList *list)
 {
-    /* Ensure GTK+ private types used by the template definition
-     * before calling gtk_widget_init_template()
-     */
-    g_type_ensure (MD_TYPE_DIARY_LIST);
-
-    gtk_widget_init_template (GTK_WIDGET (window));
 }
 
 static void
-md_window_class_init (MdWindowClass *klass)
+md_diary_list_class_init (MdDiaryListClass *klass)
 {
-    GtkWidgetClass *widget_class;
-
-    widget_class = GTK_WIDGET_CLASS (klass);
-    gtk_widget_class_set_template_from_resource (widget_class,
-                                                 "/com/jonathankang/MigraineDiary/md-window.ui");
 }
 
 GtkWidget *
-md_window_new (GtkApplication *application)
+md_diary_list_new ()
 {
-    return g_object_new (MD_TYPE_WINDOW,
-                         "application", application,
-                         NULL);
+    return g_object_new (MD_TYPE_DIARY_LIST, NULL);
 }
