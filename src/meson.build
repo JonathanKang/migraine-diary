@@ -1,5 +1,6 @@
 sources = [
     'md-application.c',
+    'md-diary-headerbar.c',
     'md-diary-list.c',
     'md-main.c',
     'md-window.c'

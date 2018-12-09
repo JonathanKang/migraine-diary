@@ -17,6 +17,7 @@
  */
 
 #include "md-diary-list.h"
+#include "md-diary-headerbar.h"
 #include "md-window.h"
 
 struct _MdWindow
@@ -33,6 +34,7 @@ md_window_init (MdWindow *window)
     /* Ensure GTK+ private types used by the template definition
      * before calling gtk_widget_init_template()
      */
+    g_type_ensure (MD_TYPE_DIARY_HEADERBAR);
     g_type_ensure (MD_TYPE_DIARY_LIST);
 
     gtk_widget_init_template (GTK_WIDGET (window));

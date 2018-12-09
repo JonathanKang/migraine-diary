@@ -3,7 +3,7 @@
         <property name="height-request">800</property>
         <property name="width-request">640</property>
         <child type="titlebar">
-            <object class="GtkHeaderBar">
+            <object class="MdDiaryHeaderbar" id="headerbar">
                 <property name="show-close-button">True</property>
                 <property name="title">Migraine Diary</property>
                 <property name="visible">True</property>
