@@ -1,0 +1,27 @@
+<interface domain="migraine-diary">
+    <template class="MdDiaryHeaderbar" parent="GtkHeaderBar">
+        <property name="expand">True</property>
+        <property name="show-close-button">True</property>
+        <property name="title">Migraine Diary</property>
+        <property name="visible">True</property>
+        <child>
+            <object class="GtkButton" id="new_button">
+                <property name="visible">True</property>
+                <property name="tooltip-text">Click to create a new diary</property>
+                <style>
+                    <class name="image-button"/>
+                </style>
+                <child>
+                    <object class="GtkImage" id="new_icon">
+                        <property name="icon-name">list-add-symbolic</property>
+                        <property name="icon-size">1</property>
+                        <property name="visible">True</property>
+                    </object>
+                </child>
+            </object>
+            <packing>
+                <property name="pack-type">end</property>
+            </packing>
+        </child>
+    </template>
+</interface>

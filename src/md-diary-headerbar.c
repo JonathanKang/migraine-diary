@@ -29,11 +29,17 @@ G_DEFINE_TYPE (MdDiaryHeaderbar, md_diary_headerbar, GTK_TYPE_HEADER_BAR)
 static void
 md_diary_headerbar_init (MdDiaryHeaderbar *headerbar)
 {
+    gtk_widget_init_template (GTK_WIDGET (headerbar));
 }
 
 static void
 md_diary_headerbar_class_init (MdDiaryHeaderbarClass *klass)
 {
+    GtkWidgetClass *widget_class;
+
+    widget_class = GTK_WIDGET_CLASS (klass);
+    gtk_widget_class_set_template_from_resource (widget_class,
+                                                 "/com/jonathankang/MigraineDiary/md-headerbar.ui");
 }
 
 GtkWidget *
