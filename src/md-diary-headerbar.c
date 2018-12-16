@@ -39,7 +39,7 @@ md_diary_headerbar_class_init (MdDiaryHeaderbarClass *klass)
 
     widget_class = GTK_WIDGET_CLASS (klass);
     gtk_widget_class_set_template_from_resource (widget_class,
-                                                 "/com/jonathankang/MigraineDiary/md-headerbar.ui");
+                                                 "/com/jonathankang/MigraineDiary/md-diary-headerbar.ui");
 }
 
 GtkWidget *
