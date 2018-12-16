@@ -24,7 +24,6 @@
                         </child>
                         <child>
                             <object class="MdDiaryList" id="diary_list">
-                                <property name="visible">True</property>
                             </object>
                         </child>
                     </object>

@@ -23,19 +23,25 @@
 struct _MdDiaryList
 {
     /*< private >*/
-    GtkListBox parent_instance;
+    GtkBox parent_instance;
 };
 
-G_DEFINE_TYPE (MdDiaryList, md_diary_list, GTK_TYPE_LIST_BOX)
+G_DEFINE_TYPE (MdDiaryList, md_diary_list, GTK_TYPE_BOX)
 
 static void
 md_diary_list_init (MdDiaryList *list)
 {
+    gtk_widget_init_template (GTK_WIDGET (list));
 }
 
 static void
 md_diary_list_class_init (MdDiaryListClass *klass)
 {
+    GtkWidgetClass *widget_class;
+
+    widget_class = GTK_WIDGET_CLASS (klass);
+    gtk_widget_class_set_template_from_resource (widget_class,
+                                                 "/com/jonathankang/MigraineDiary/md-diary-list.ui");
 }
 
 GtkWidget *
