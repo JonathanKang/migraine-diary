@@ -33,6 +33,41 @@ typedef struct
 
 G_DEFINE_TYPE_WITH_PRIVATE (MdDiaryList, md_diary_list, GTK_TYPE_BOX)
 
+static GtkWidget *
+md_diary_list_create_placeholder (void)
+{
+    GtkStyleContext *style;
+    GtkWidget *box;
+    GtkWidget *image;
+    GtkWidget *label;
+    gchar *markup;
+
+    box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
+    gtk_widget_set_halign(box, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(box, GTK_ALIGN_CENTER);
+    gtk_widget_set_hexpand(box, TRUE);
+    gtk_widget_set_vexpand(box, TRUE);
+    style = gtk_widget_get_style_context(box);
+    gtk_style_context_add_class(style, "dim-label");
+
+    image = gtk_image_new_from_icon_name ("action-unavailable-symbolic", 0);
+    gtk_image_set_pixel_size (GTK_IMAGE (image), 64);
+    style = gtk_widget_get_style_context (image);
+    gtk_style_context_add_class (style, "dim-label");
+    gtk_box_pack_start (GTK_BOX (box), image, TRUE, TRUE, 0);
+
+    label = gtk_label_new(NULL);
+    markup = g_markup_printf_escaped("<big>%s</big>", "No diary found, create one.");
+    gtk_label_set_markup (GTK_LABEL (label), markup);
+    gtk_box_pack_end (GTK_BOX (box), label, TRUE, TRUE, 0);
+
+    gtk_widget_show_all (box);
+
+    g_free (markup);
+
+    return box;
+}
+
 static void
 md_diary_list_init (MdDiaryList *list)
 {
@@ -40,8 +75,7 @@ md_diary_list_init (MdDiaryList *list)
     GtkWidget *placeholder;
 
     priv = md_diary_list_get_instance_private (list);
-    placeholder = gtk_label_new ("No diary found, create one.");
-    gtk_widget_set_visible (placeholder, TRUE);
+    placeholder = md_diary_list_create_placeholder ();
 
     gtk_widget_init_template (GTK_WIDGET (list));
 
