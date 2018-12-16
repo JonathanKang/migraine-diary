@@ -15,14 +15,6 @@
                         <property name="expand">True</property>
                         <property name="visible">True</property>
                         <child>
-                            <object class="GtkLabel">
-                                <property name="halign">GTK_ALIGN_CENTER</property>
-                                <property name="valign">GTK_ALIGN_CENTER</property>
-                                <property name="label">No diary found.</property>
-                                <property name="visible">True</property>
-                            </object>
-                        </child>
-                        <child>
                             <object class="MdDiaryList" id="diary_list">
                             </object>
                         </child>

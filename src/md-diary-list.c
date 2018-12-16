@@ -26,12 +26,26 @@ struct _MdDiaryList
     GtkBox parent_instance;
 };
 
-G_DEFINE_TYPE (MdDiaryList, md_diary_list, GTK_TYPE_BOX)
+typedef struct
+{
+    GtkListBox *diaries_list;
+} MdDiaryListPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (MdDiaryList, md_diary_list, GTK_TYPE_BOX)
 
 static void
 md_diary_list_init (MdDiaryList *list)
 {
+    MdDiaryListPrivate *priv;
+    GtkWidget *placeholder;
+
+    priv = md_diary_list_get_instance_private (list);
+    placeholder = gtk_label_new ("No diary found, create one.");
+    gtk_widget_set_visible (placeholder, TRUE);
+
     gtk_widget_init_template (GTK_WIDGET (list));
+
+    gtk_list_box_set_placeholder (priv->diaries_list, placeholder);
 }
 
 static void
@@ -42,6 +56,7 @@ md_diary_list_class_init (MdDiaryListClass *klass)
     widget_class = GTK_WIDGET_CLASS (klass);
     gtk_widget_class_set_template_from_resource (widget_class,
                                                  "/com/jonathankang/MigraineDiary/md-diary-list.ui");
+    gtk_widget_class_bind_template_child_private (widget_class, MdDiaryList, diaries_list);
 }
 
 GtkWidget *
