@@ -34,6 +34,45 @@ typedef struct
 G_DEFINE_TYPE_WITH_PRIVATE (MdDiaryList, md_diary_list, GTK_TYPE_BOX)
 
 static GtkWidget *
+md_diary_list_make_row (MdDiaryList *list)
+{
+    GDateTime *now;
+    GtkWidget *box;
+    GtkWidget *title;
+    GtkWidget *time_label;
+    gchar *time;
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+
+    title = gtk_label_new ("title");
+    gtk_box_pack_start (GTK_BOX (box), title, TRUE, TRUE, 0);
+
+    now = g_date_time_new_now_local ();
+    time = g_date_time_format(now, "%F");
+    time_label = gtk_label_new (time);
+    gtk_widget_set_margin_end (time_label, 6);
+    gtk_box_pack_end (GTK_BOX (box), time_label, FALSE, FALSE, 0);
+
+    gtk_widget_show_all (box);
+
+    g_date_time_unref (now);
+    g_free (time);
+
+    return box;
+}
+
+void
+md_diary_list_add_item (MdDiaryList *list)
+{
+    MdDiaryListPrivate *priv;
+    GtkWidget *row;
+
+    priv = md_diary_list_get_instance_private (list);
+    row = md_diary_list_make_row (list);
+    gtk_list_box_prepend (priv->diaries_list, row);
+}
+
+static GtkWidget *
 md_diary_list_create_placeholder (void)
 {
     GtkStyleContext *style;

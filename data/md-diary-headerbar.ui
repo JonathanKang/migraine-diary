@@ -6,6 +6,7 @@
         <property name="visible">True</property>
         <child>
             <object class="GtkButton" id="new_button">
+                <property name="action-name">win.add-diary</property>
                 <property name="visible">True</property>
                 <property name="tooltip-text">Click to create a new diary</property>
                 <style>

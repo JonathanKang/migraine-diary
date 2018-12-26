@@ -27,6 +27,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (MdDiaryList, md_diary_list, MD, DIARY_LIST, GtkBox)
 
 GtkWidget *md_diary_list_new (void);
+void md_diary_list_add_item (MdDiaryList *list);
 
 G_END_DECLS
 

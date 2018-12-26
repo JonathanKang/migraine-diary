@@ -26,7 +26,37 @@ struct _MdWindow
     GtkApplicationWindow parent_instance;
 };
 
-G_DEFINE_TYPE (MdWindow, md_window, GTK_TYPE_APPLICATION_WINDOW)
+typedef struct
+{
+    GtkWidget *diary_list;
+    GtkDialog *new_dialog;
+} MdWindowPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (MdWindow, md_window, GTK_TYPE_APPLICATION_WINDOW)
+
+static void
+on_add_diary (GSimpleAction *action,
+              GVariant *variant,
+              gpointer user_data)
+{
+    MdWindowPrivate *priv;
+    MdDiaryList *diary_list;
+    GtkDialog *new_dialog;
+
+    priv = md_window_get_instance_private(user_data);
+    diary_list = MD_DIARY_LIST(priv->diary_list);
+    new_dialog = GTK_DIALOG (priv->new_dialog);
+
+    gtk_dialog_run (new_dialog);
+    md_diary_list_add_item (diary_list);
+
+    /* TODO: Add a new diary here */
+    g_print ("Add a new diary\n");
+}
+
+static GActionEntry actions[] = {
+    { "add-diary", on_add_diary }
+};
 
 static void
 md_window_init (MdWindow *window)
@@ -38,6 +68,8 @@ md_window_init (MdWindow *window)
     g_type_ensure (MD_TYPE_DIARY_LIST);
 
     gtk_widget_init_template (GTK_WIDGET (window));
+
+    g_action_map_add_action_entries (G_ACTION_MAP (window), actions, G_N_ELEMENTS (actions), window);
 }
 
 static void
@@ -48,6 +80,8 @@ md_window_class_init (MdWindowClass *klass)
     widget_class = GTK_WIDGET_CLASS (klass);
     gtk_widget_class_set_template_from_resource (widget_class,
                                                  "/com/jonathankang/MigraineDiary/md-window.ui");
+    gtk_widget_class_bind_template_child_private (widget_class, MdWindow, diary_list);
+    gtk_widget_class_bind_template_child_private (widget_class, GtkDialog, new_dialog);
 }
 
 GtkWidget *
